@@ -1,0 +1,35 @@
+STREAMING_CHUNK: Configurações Gerais para Motores de Busca
+
+Permite o rastreamento do Googlebot e bots amigáveis em todo o site público.
+
+User-agent: *
+Allow: /
+
+STREAMING_CHUNK: Proteção de Infraestrutura e Orçamento de Rastreamento (Crawl Budget)
+
+Bloqueia pastas de sistema, áreas administrativas e URLs parametrizadas
+
+para evitar que o Google perca tempo indexando conteúdo duplicado ou irrelevante.
+
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /private/
+Disallow: /?
+Disallow: /&
+
+STREAMING_CHUNK: Bloqueio de Scrapers (Opcional, melhora a segurança)
+
+Bloqueia bots de varredura que consomem banda desnecessária
+
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+
+STREAMING_CHUNK: Apontamento do Sitemap
+
+Ajuda os bots a encontrarem a rota exata de indexação rapidamente.
+
+Sitemap: https://playsan.com.br/sitemap.xml

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlaySan Sistemas | Transformamos sua Presença Digital</title>
+    <meta name="description" content="A PlaySan Sistemas coloca sua empresa no topo do Google, cria sites focados em vendas e gerencia sua presença digital completa.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'play-light': '#F0F4F9', // Azul Gelo Tech
+                        'play-surface': '#FFFFFF', // Fundo de cards
+                        'play-dark': '#0B192C', // Mantido para o rodapé e contraste extremo
+                        'play-text-main': '#0F172A', // Texto principal escuro para legibilidade
+                        'play-text-muted': '#475569', // Texto secundário
+                        'play-blue': '#0052FF',
+                        'play-blue-dark': '#003ecc',
+                        'play-green': '#00C853',
+                        'play-green-hover': '#00a344',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+   <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F0F4F9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0052FF;
+            border-radius: 4px;
+        }
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-play-blue selection:text-white bg-play-light text-play-text-main">
+    
+    <!-- A. NAVEGAÇÃO -->
+    <header class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-play-light/90 border-b border-gray-200" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="assets/logo.png" alt="Logotipo da PlaySan Sistemas" class="h-12 w-auto object-contain hidden sm:block" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <div id="logo-text" class="text-2xl font-bold tracking-tight text-play-text-main" style="display: none;">
+                        Play<span class="text-play-blue">San</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#sites" class="text-play-text-muted hover:text-play-blue transition-colors text-sm font-medium">Sites de Vendas</a>
+                    <a href="#google" class="text-play-text-muted hover:text-play-blue transition-colors text-sm font-medium">Google</a>
+                    <a href="#marketing" class="text-play-text-muted hover:text-play-blue transition-colors text-sm font-medium">Marketing</a>
+                    <a href="#nfc" class="text-play-text-muted hover:text-play-blue transition-colors text-sm font-medium">Placas NFC</a>
+                    <a href="#combos" class="text-play-text-main font-bold hover:text-play-blue transition-colors text-sm">Pacotes</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/5511999999999?text=Olá, vim pelo site e gostaria de conversar sobre minha empresa!" target="_blank" class="bg-play-blue hover:bg-play-blue-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-[0_0_15px_rgba(0,82,255,0.3)] hover:shadow-[0_0_20px_rgba(0,82,255,0.5)] flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-lg"></i> Falar com Especialista
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-play-text-main focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-play-light border-b border-gray-200 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#sites" class="mobile-link block px-3 py-3 text-base font-medium text-play-text-muted hover:text-play-blue hover:bg-gray-50 rounded-md">Sites de Vendas</a>
+                <a href="#google" class="mobile-link block px-3 py-3 text-base font-medium text-play-text-muted hover:text-play-blue hover:bg-gray-50 rounded-md">Google Meu Negócio</a>
+                <a href="#marketing" class="mobile-link block px-3 py-3 text-base font-medium text-play-text-muted hover:text-play-blue hover:bg-gray-50 rounded-md">Marketing & Artes</a>
+                <a href="#nfc" class="mobile-link block px-3 py-3 text-base font-medium text-play-text-muted hover:text-play-blue hover:bg-gray-50 rounded-md">Tecnologia NFC</a>
+                <a href="#combos" class="mobile-link block px-3 py-3 text-base font-bold text-play-text-main hover:text-play-blue hover:bg-gray-50 rounded-md">Ver Pacotes</a>
+                <a href="https://wa.me/5511999999999" target="_blank" class="block w-full text-center mt-4 bg-play-blue text-white px-5 py-3 rounded-md font-semibold flex justify-center items-center gap-2 shadow-md">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- B. HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-play-light">
+        <!-- Efeitos de fundo mais sutis para fundo claro -->
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-play-blue/10 rounded-full mix-blend-multiply filter blur-[100px] opacity-70"></div>
+        <div class="absolute top-1/3 right-0 w-96 h-96 bg-play-green/10 rounded-full mix-blend-multiply filter blur-[100px] opacity-70"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+                
+                <div class="w-full lg:w-1/2 text-center lg:text-left reveal">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-play-blue/5 border border-play-blue/20 text-play-blue font-semibold text-sm mb-6">
+                        <i class="fas fa-rocket mr-2"></i> Agência de Tecnologia e Marketing
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-play-text-main">
+                        Transformamos a <br class="hidden lg:block"/>
+                        <span class="text-play-blue">Presença Digital</span><br/>
+                        da Sua Empresa.
+                    </h1>
+                    <p class="text-lg md:text-xl text-play-text-muted mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Conquiste clientes na sua cidade, apareça nas primeiras buscas do Google e tenha atendimento automático no WhatsApp.
+                    </p>
+                  <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#sites" class="w-full sm:w-auto bg-play-blue hover:bg-play-blue-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(0,82,255,0.3)] hover:shadow-[0_0_30px_rgba(0,82,255,0.5)]">
+                            Quero um Site Profissional
+                        </a>
+                        <a href="#google" class="w-full sm:w-auto bg-transparent border-2 border-play-blue text-play-blue hover:bg-play-blue hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all">
+                            Otimizar Meu Google
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center justify-center lg:justify-start gap-4 text-sm text-play-text-muted">
+                        <!-- Substituição dos Emojis por Imagens -->
+                        <div class="flex -space-x-2">
+                            <img src="assets/loja1.jpg" alt="Loja de Roupas parceira da PlaySan" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
+                            <img src="assets/loja2.jpg" alt="Padaria parceira da PlaySan" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-play-blue flex items-center justify-center text-xs text-white font-bold shadow-sm">+50</div>
+                        </div>
+                        <p><strong class="text-play-text-main">Mais de 50 negócios</strong> melhorados pela PlaySan.</p>
+                    </div>
+                </div>
+
+                <!-- Celular Mockup -->
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end reveal animate-float delay-100">
+                    <div class="relative w-72 md:w-80 h-[550px] bg-gray-100 border-[12px] border-gray-800 rounded-[3rem] shadow-2xl overflow-hidden relative">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-xl z-20"></div>
+                        
+                        <div class="w-full h-full bg-gray-50 flex flex-col relative z-10 overflow-hidden">
+                            <div class="h-1/3 bg-gray-200 relative flex items-center justify-center">
+                                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 10px 10px;"></div>
+                                <i class="fas fa-map-marker-alt text-4xl text-red-500 drop-shadow-md z-10"></i>
+                            </div>
+                            
+                            <div class="flex-1 bg-white p-5 pt-6 rounded-t-3xl -mt-4 relative z-10 flex flex-col shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+                                <h3 class="text-xl font-bold text-gray-900 mb-1">Sua Empresa</h3>
+                                <div class="flex items-center text-yellow-400 text-sm mb-3">
+                                    4.9 <i class="fas fa-star mx-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-2"></i> <span class="text-gray-500">(128 avaliações)</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-4 border-b border-gray-100 pb-4"><i class="fas fa-check-circle text-play-green mr-1"></i> Aberto agora</p>
+                                
+                                <div class="flex gap-2 mb-4">
+                                    <div class="flex-1 bg-blue-50 text-play-blue rounded-lg py-2 flex flex-col items-center justify-center text-xs font-semibold">
+                                        <i class="fas fa-globe mb-1"></i> Site
+                                    </div>
+                                    <div class="flex-1 bg-blue-50 text-play-blue rounded-lg py-2 flex flex-col items-center justify-center text-xs font-semibold">
+                                        <i class="fas fa-directions mb-1"></i> Rotas
+                                    </div>
+                                    <div class="flex-1 bg-blue-50 text-play-blue rounded-lg py-2 flex flex-col items-center justify-center text-xs font-semibold">
+                                        <i class="fas fa-phone-alt mb-1"></i> Ligar
+                                    </div>
+                                </div>
+                                
+                                <div class="w-full bg-play-green text-white text-center py-3 rounded-xl font-bold text-sm shadow-md mt-auto">
+                                    <i class="fab fa-whatsapp mr-1"></i> Chamar no WhatsApp
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- C. CRIAÇÃO DE SITES -->
+    <section id="sites" class="py-20 relative bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-play-blue font-semibold tracking-wide uppercase text-sm mb-2">Presença na Internet</h2>
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-play-text-main">Sites e Páginas Focadas em Vendas</h3>
+                <p class="text-play-text-muted text-lg">Criamos páginas super rápidas, com design moderno e organizadas para transformar as pessoas que visitam seu perfil em contatos reais.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card -->
+                <div class="bg-play-light border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 reveal group">
+                    <div class="w-14 h-14 bg-play-blue/10 rounded-xl flex items-center justify-center mb-6 text-play-blue group-hover:bg-play-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-play-text-main">Páginas de Vendas</h4>
+                    <p class="text-play-text-muted mb-6 text-sm">Feitas com um único objetivo: fazer o cliente chamar você. Estrutura perfeita para captar contatos no Instagram e Google.</p>
+                    <ul class="text-sm text-play-text-main font-medium space-y-2">
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Direto ao ponto</li>
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Botão visível para o WhatsApp</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-play-light border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 reveal group" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-play-blue/10 rounded-xl flex items-center justify-center mb-6 text-play-blue group-hover:bg-play-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-building text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-play-text-main">Sites Empresariais</h4>
+                    <p class="text-play-text-muted mb-6 text-sm">Apresente sua empresa, equipe e serviços com profissionalismo. Sua vitrine digital funcionando 24h por dia.</p>
+                    <ul class="text-sm text-play-text-main font-medium space-y-2">
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Mostre todo o seu trabalho</li>
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Preparado para buscas no Google</li>
+                    </ul>
+                </div>
+
+                <div class="bg-play-light border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 reveal group" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-play-blue/10 rounded-xl flex items-center justify-center mb-6 text-play-blue group-hover:bg-play-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-heart text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-play-text-main">Sites para Eventos</h4>
+                    <p class="text-play-text-muted mb-6 text-sm">Páginas elegantes para casamentos ou formaturas. Facilite a confirmação de convidados de forma digital e chique.</p>
+                    <ul class="text-sm text-play-text-main font-medium space-y-2">
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Confirmação de presença online</li>
+                        <li><i class="fas fa-check text-play-green mr-2"></i> Listas de presentes integradas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 py-8 border-y border-gray-200 flex flex-wrap justify-center gap-8 text-center reveal">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-tachometer-alt text-play-blue text-xl"></i>
+                    <span class="font-medium text-play-text-muted">Carrega em 1 segundo</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-mobile-alt text-play-blue text-xl"></i>
+                    <span class="font-medium text-play-text-muted">Funciona em qualquer celular</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-search text-play-blue text-xl"></i>
+                    <span class="font-medium text-play-text-muted">Fácil de encontrar no Google</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- D. GOOGLE MEU NEGÓCIO -->
+    <section id="google" class="py-20 relative bg-play-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 reveal">
+                    <div class="relative bg-white border border-gray-200 p-2 rounded-2xl shadow-xl">
+                        <div class="bg-gray-50 rounded-xl overflow-hidden p-6 border border-gray-200">
+                            <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-play-blue rounded-full flex items-center justify-center text-white font-bold text-xl">S</div>
+                                    <div>
+                                        <h4 class="font-bold text-lg leading-tight text-gray-900">Sua Empresa</h4>
+                                        <div class="flex text-yellow-400 text-xs mt-1">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+                                            <span class="text-gray-500 ml-1">200+ avaliações</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fab fa-google text-2xl text-gray-400"></i>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="h-2 bg-gray-200 rounded w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded w-1/2"></div>
+                                <div class="h-2 bg-gray-200 rounded w-5/6"></div>
+                            </div>
+                            <div class="mt-6 bg-green-50 border border-green-200 p-4 rounded-lg flex items-center justify-between">
+                                <span class="text-play-green font-bold"><i class="fas fa-trophy mr-2"></i> Posição #1</span>
+                                <span class="text-xs text-gray-500 font-medium">Na sua região</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 reveal">
+                    <h2 class="text-play-blue font-semibold tracking-wide uppercase text-sm mb-2">No Mapa da Cidade</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-play-text-main">Seja o 1º no Google da sua Região</h3>
+                    <p class="text-play-text-muted text-lg mb-8">
+                        Quando um cliente procura pelo seu serviço, ele abre o mapa e liga para os primeiros da lista. Arrumamos seu perfil para você aparecer na frente da concorrência e receber mais ligações.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-play-blue/10 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-check text-play-blue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-play-text-main">Organização Completa</h4>
+                                <p class="text-play-text-muted text-sm">Arrumamos seus horários, contatos e catálogo de produtos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-play-blue/10 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-check text-play-blue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-play-text-main">Fotos e Visual Profissional</h4>
+                                <p class="text-play-text-muted text-sm">Deixamos seu perfil chamativo para atrair clientes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-play-blue/10 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-check text-play-blue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-play-text-main">Máquina de Avaliações 5 Estrelas</h4>
+                                <p class="text-play-text-muted text-sm">Ajudamos você a conseguir depoimentos reais com as placas NFC.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- F. INOVAÇÃO NFC -->
+    <section id="nfc" class="py-20 relative overflow-hidden bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-play-light border border-gray-200 rounded-3xl p-8 md:p-12 shadow-lg reveal">
+                <div class="flex flex-col lg:flex-row items-center gap-10">
+                    
+                    <div class="w-full lg:w-1/2">
+                        <span class="inline-block px-3 py-1 bg-play-blue/10 text-play-blue border border-play-blue/20 rounded-full text-xs font-bold tracking-wide uppercase mb-4">Aumente sua nota</span>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4 text-play-text-main">O Efeito Mágico de 15 Segundos <i class="fas fa-magic text-play-blue ml-2"></i></h3>
+                        <p class="text-play-text-muted text-lg mb-6">
+                            Acabe com a vergonha de pedir avaliações. Com nossos <strong>Cartões e Placas Inteligentes (NFC)</strong>, seu cliente só precisa encostar o celular na placa e a tela do seu Google abre na hora.
+                        </p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                                <i class="fas fa-wifi text-play-blue text-xl mr-4 w-6 text-center"></i>
+                                <span class="text-play-text-main font-medium text-sm">Basta aproximar o celular (Tecnologia NFC)</span>
+                            </div>
+                            <div class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                                <i class="fas fa-qrcode text-play-blue text-xl mr-4 w-6 text-center"></i>
+                                <span class="text-play-text-main font-medium text-sm">Também funciona com a câmera (QR Code)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 flex justify-center">
+                        <div class="relative w-64 h-96 group perspective">
+                            <div class="w-full h-full absolute transition-all duration-500 transform-style-3d group-hover:rotate-y-180">
+                                <!-- Cartão claro para combinar com o tema -->
+                                <div class="absolute w-full h-full bg-gradient-to-br from-gray-800 to-play-dark border border-gray-700 rounded-2xl shadow-2xl p-6 flex flex-col justify-between backface-hidden">
+                                    <div class="flex justify-between items-start">
+                                        <div class="text-2xl font-bold text-white">Play<span class="text-play-blue">San</span></div>
+                                        <i class="fas fa-wifi text-play-blue rotate-90 text-xl"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <i class="fab fa-google text-4xl text-white mb-2"></i>
+                                        <h3 class="text-white font-bold mb-1">Avalie nosso serviço</h3>
+                                        <p class="text-xs text-gray-400">Aproxime seu celular aqui</p>
+                                    </div>
+                                    <div class="text-xs text-gray-500 text-center uppercase tracking-widest">Cartão Inteligente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- G. COMBOS ESTRATÉGICOS -->
+    <section id="combos" class="py-20 relative bg-play-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-play-blue font-semibold tracking-wide uppercase text-sm mb-2">Pacotes Completos</h2>
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-play-text-main">Escolha a Estrutura Ideal</h3>
+                <p class="text-play-text-muted text-lg">Sem taxas escondidas, você escolhe o nível que a sua empresa precisa agora para começar a faturar mais na internet.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                
+                <div class="bg-white border border-gray-200 rounded-2xl p-8 reveal hover:-translate-y-2 transition-transform duration-300 shadow-md">
+                    <h4 class="text-2xl font-bold text-play-text-main mb-2">Arranque Digital</h4>
+                    <p class="text-play-text-muted text-sm h-10">O básico bem feito para você começar a ser visto pelas pessoas.</p>
+                    <div class="my-6 border-b border-gray-100"></div>
+                    <ul class="space-y-4 mb-8 text-sm text-play-text-main font-medium">
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Otimização Google Meu Negócio</li>
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Pacote de Artes para Instagram</li>
+                        <li class="flex text-gray-400"><i class="fas fa-times mt-1 mr-3"></i> Página de Vendas ou Site</li>
+                        <li class="flex text-gray-400"><i class="fas fa-times mt-1 mr-3"></i> Atendente Virtual Automático</li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999?text=Quero saber mais sobre o Pacote Arranque Digital" target="_blank" class="block w-full py-3 px-4 border border-play-blue text-play-blue hover:bg-play-blue hover:text-white text-center rounded-xl font-bold transition-colors">Solicitar Orçamento</a>
+                </div>
+
+                <div class="bg-white border-2 border-play-blue rounded-2xl p-8 reveal transform scale-100 lg:scale-105 shadow-2xl relative z-10" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-play-blue text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                        Recomendado
+                    </div>
+                    <h4 class="text-2xl font-bold text-play-text-main mb-2">Presença Completa</h4>
+                    <p class="text-play-text-muted text-sm h-10">A estrutura perfeita para dominar sua cidade e captar contatos.</p>
+                    <div class="my-6 border-b border-gray-200"></div>
+                    <ul class="space-y-4 mb-8 text-sm text-play-text-main font-bold">
+                        <li class="flex"><i class="fas fa-check text-play-blue mt-1 mr-3"></i> Organização Total no Google (VIP)</li>
+                        <li class="flex"><i class="fas fa-check text-play-blue mt-1 mr-3"></i> Página de Vendas Profissional</li>
+                        <li class="flex"><i class="fas fa-check text-play-blue mt-1 mr-3"></i> Atendente Virtual (WhatsApp)</li>
+                        <li class="flex"><i class="fas fa-check text-play-blue mt-1 mr-3"></i> Conexão com suas Redes Sociais</li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999?text=Quero organizar minha empresa com o Pacote Presença Completa" target="_blank" class="block w-full py-4 px-4 bg-play-blue hover:bg-play-blue-dark text-white text-center rounded-xl font-bold transition-colors shadow-lg">Quero Este Pacote</a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-8 reveal hover:-translate-y-2 transition-transform duration-300 shadow-md" style="transition-delay: 200ms;">
+                    <h4 class="text-2xl font-bold text-play-text-main mb-2">Loja Automatizada</h4>
+                    <p class="text-play-text-muted text-sm h-10">Para organizar o negócio sem depender de funcionários extras.</p>
+                    <div class="my-6 border-b border-gray-100"></div>
+                    <ul class="space-y-4 mb-8 text-sm text-play-text-main font-medium">
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Página de Vendas / Catálogo</li>
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Sistema de Estoque e Caixa Simples</li>
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Robô Avançado para dúvidas</li>
+                        <li class="flex"><i class="fas fa-check text-play-green mt-1 mr-3"></i> Relatórios fáceis de entender</li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999?text=Quero automatizar minha loja com o Pacote Loja Automatizada" target="_blank" class="block w-full py-3 px-4 border border-play-blue text-play-blue hover:bg-play-blue hover:text-white text-center rounded-xl font-bold transition-colors">Solicitar Orçamento</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- H. SIMULADOR E FAQ -->
+    <section class="py-20 relative bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <!-- SIMULADOR COM CARD ESCURO -->
+            <div class="bg-play-dark border border-gray-800 rounded-3xl p-8 md:p-12 reveal shadow-2xl relative overflow-hidden">
+                <!-- Brilho sutil no fundo do card para efeito Premium -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-play-blue/10 rounded-full mix-blend-screen filter blur-[80px]"></div>
+
+                <div class="text-center mb-10 relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Descubra quanto você pode faturar a mais</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Use nossa calculadora para ter uma ideia do retorno financeiro ao ter sua empresa no topo do Google com um site profissional.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-white mb-2">Qual o seu tipo de negócio?</label>
+                            <select id="sim-ramo" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-play-blue focus:ring-1 focus:ring-play-blue transition-all">
+                                <option value="restaurante">Lanches / Restaurante (Valor médio: R$ 70/venda)</option>
+                                <option value="clinica">Clínica / Estética (Valor médio: R$ 250/agendamento)</option>
+                                <option value="varejo">Loja de Roupas / Varejo (Valor médio: R$ 150/venda)</option>
+                                <option value="servicos">Prestador de Serviços (Valor médio: R$ 800/contrato)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-white mb-2">Pessoas que procuram seu serviço na sua cidade por mês:</label>
+                            <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                                <span>100</span>
+                                <span>10.000+</span>
+                            </div>
+                            <input type="range" id="sim-buscas" min="100" max="10000" step="100" value="2000" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-play-blue">
+                            <div class="text-center mt-2 text-play-blue font-bold text-lg"><span id="sim-buscas-val">2.000</span> buscas na região</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900/80 rounded-2xl p-6 border border-gray-700 shadow-sm flex flex-col justify-center backdrop-blur-md">
+                        <h4 class="text-gray-400 text-sm font-bold mb-4 text-center">Estimativa nos primeiros meses</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-end border-b border-gray-800 pb-3">
+                                <span class="text-gray-300 text-sm font-medium">Novos Contatos Reais por Mês:</span>
+                                <span id="res-leads" class="text-2xl font-bold text-play-blue">40</span>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-gray-300 text-sm font-medium">Aumento Estimado nas Vendas:</span>
+                                <span id="res-fat" class="text-3xl font-extrabold text-play-green">R$ 2.800</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-[10px] text-gray-500 mt-6 text-center leading-tight">
+                            *Esta é uma simulação segura baseada na média de pessoas que clicam no Google e entram em contato no WhatsApp. Não é uma promessa de lucro exata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div id="faq" class="reveal">
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl font-bold text-play-text-main mb-3">Dúvidas Frequentes</h3>
+                    <p class="text-play-text-muted">Tudo o que você precisa saber antes de modernizar sua empresa.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
+                            <span class="font-bold text-play-text-main">O que é uma Página de Vendas e por que ela é melhor do que um site antigo?</span>
+                            <i class="fas fa-chevron-down text-play-blue transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                            <p class="text-play-text-main px-6 pb-5 text-sm leading-relaxed">
+                                Sites antigos eram como panfletos digitais: cheios de texto e confusos. Uma Página de Vendas da PlaySan é focada 100% em uma coisa: fazer o visitante ver suas vantagens e clicar no botão do WhatsApp na hora. É rápida e vai direto ao ponto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
+                            <span class="font-bold text-play-text-main">Preciso entender de internet ou computadores para gerenciar isso?</span>
+                            <i class="fas fa-chevron-down text-play-blue transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                            <p class="text-play-text-main px-6 pb-5 text-sm leading-relaxed">
+                                Não! Absolutamente nada. Nós entregamos tudo pronto, testado e funcionando. Você não precisa programar ou configurar nada. Seu único trabalho será responder os clientes interessados.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
+                            <span class="font-bold text-play-text-main">A Placa Inteligente (NFC) funciona em qualquer celular?</span>
+                            <i class="fas fa-chevron-down text-play-blue transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                            <p class="text-play-text-main px-6 pb-5 text-sm leading-relaxed">
+                                Sim! A maioria absoluta dos celulares atuais possui o leitor de encostar. Para os modelos antigos, nossas placas já vêm com o desenho do "QR Code" que a pessoa lê usando apenas a câmera normal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- I. RODAPÉ ESCURO -->
+    <footer class="bg-play-dark pt-16 pb-8 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+              <div class="md:col-span-1">
+                    <img src="assets/ps.png" alt="Ícone da Agência PlaySan Sistemas" class="h-10 w-auto mb-4" onerror="this.style.display='none'; document.getElementById('logo-text-footer').style.display='block';">
+                    <div id="logo-text-footer" class="text-2xl font-bold tracking-tight mb-4" style="display: none;">
+                        Play<span class="text-play-blue">San</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Ajudamos negócios locais a venderem todos os dias usando a internet de forma simples e profissional.</p>
+                </div>
+                
+                <div>
+                    <h5 class="text-white font-bold mb-4">Serviços</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#sites" class="hover:text-play-blue transition-colors">Sites e Páginas</a></li>
+                        <li><a href="#google" class="hover:text-play-blue transition-colors">Google Meu Negócio</a></li>
+                        <li><a href="#nfc" class="hover:text-play-blue transition-colors">Placas de Avaliação</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-4">Diretoria</h5>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>
+                            <strong class="text-gray-200">Rafael Boaro</strong><br>
+                            <span class="text-xs text-play-blue">Tecnologia e Sistemas</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-200">Samuel Silva</strong><br>
+                            <span class="text-xs text-play-blue">Comercial e Atendimento</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-4">Fale Conosco</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fab fa-whatsapp"></i> (11) 99999-9999</li>
+                        <li class="flex items-center gap-2"><i class="far fa-envelope"></i> contato@playsan.com.br</li>
+                        <li class="flex items-center gap-2"><i class="fab fa-instagram"></i> @playsan.sistemas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs text-center md:text-left">
+                    &copy; 2024 PlaySan Sistemas. Todos os direitos reservados.
+                </p>
+                <div class="text-gray-500 text-xs">
+                    Feito com <i class="fas fa-heart text-red-500 mx-1"></i> por PlaySan.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5511999999999?text=Olá, estava no site da PlaySan e gostaria de conversar com vocês!" target="_blank" class="fixed bottom-6 right-6 bg-play-green text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg z-50 hover:scale-110 transition-transform before:content-[''] before:absolute before:inset-0 before:rounded-full before:bg-play-green before:animate-ping before:opacity-75 before:-z-10 group" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp relative z-10 group-hover:rotate-12 transition-transform"></i>
+    </a>
+
+    <!-- Lógica Javascript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* 1. Toggle Mobile Menu */
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const icon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if(menu.classList.contains('hidden')){
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            /* 2. Efeito Navbar - Fixa Tradicional 100% */
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md', 'bg-white/95');
+                    navbar.classList.remove('bg-play-light/90');
+                } else {
+                    navbar.classList.remove('shadow-md', 'bg-white/95');
+                    navbar.classList.add('bg-play-light/90');
+                }
+            });
+
+            /* 3. Intersection Observer (Animação de Scroll) */
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealOnScroll.observe(el));
+
+            /* 4. Lógica do Simulador de Retorno Financeiro */
+            const simRamo = document.getElementById('sim-ramo');
+            const simBuscas = document.getElementById('sim-buscas');
+            const simBuscasVal = document.getElementById('sim-buscas-val');
+            const resLeads = document.getElementById('res-leads');
+            const resFat = document.getElementById('res-fat');
+
+            const dadosRamo = {
+                'restaurante': { taxa: 0.05, ticket: 70 }, 
+                'clinica': { taxa: 0.02, ticket: 250 },    
+                'varejo': { taxa: 0.03, ticket: 150 },     
+                'servicos': { taxa: 0.015, ticket: 800 }   
+            };
+
+            function updateCalculadora() {
+                const ramoSelect = simRamo.value;
+                const buscasMes = parseInt(simBuscas.value);
+                
+                simBuscasVal.textContent = buscasMes.toLocaleString('pt-BR');
+
+                const taxa = dadosRamo[ramoSelect].taxa;
+                const ticket = dadosRamo[ramoSelect].ticket;
+
+                const leadsMes = Math.round(buscasMes * taxa);
+                const fatMes = leadsMes * ticket;
+
+                animateValue(resLeads, parseInt(resLeads.textContent) || 0, leadsMes, 500);
+                
+                const formatadorMoeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+                resFat.textContent = formatadorMoeda.format(fatMes);
+            }
+
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) window.requestAnimationFrame(step);
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            simRamo.addEventListener('change', updateCalculadora);
+            simBuscas.addEventListener('input', updateCalculadora);
+            updateCalculadora();
+
+            /* 5. Lógica do FAQ (Accordion) */
+            const accordions = document.querySelectorAll('.accordion-btn');
+
+            accordions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        document.querySelectorAll('.accordion-content').forEach(accContent => {
+                            accContent.style.maxHeight = null;
+                        });
+                        document.querySelectorAll('.accordion-btn i').forEach(accIcon => {
+                            accIcon.style.transform = 'rotate(0deg)';
+                        });
+                        
+                        content.style.maxHeight = content.scrollHeight + 20 + "px"; 
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
