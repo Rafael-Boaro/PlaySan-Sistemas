@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlaySan Sistemas | Transformamos sua Presença Digital</title>
-    <meta name="description" content="A PlaySan Sistemas coloca sua empresa no topo do Google, cria sites focados em vendas e gerencia sua presença digital completa.">
+    <!-- Adicionado "automação para redes sociais" na descrição -->
+    <meta name="description" content="A PlaySan Sistemas coloca sua empresa no topo do Google, cria sites focados em vendas, automação para redes sociais e gerencia sua presença digital completa.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -87,7 +88,8 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="assets/logo.png" alt="Logotipo da PlaySan Sistemas" class="h-12 w-auto object-contain hidden sm:block" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <!-- Removido 'hidden sm:block' para que a logo apareça sempre, inclusive no mobile -->
+                    <img src="assets/logo.png" alt="Logotipo da PlaySan Sistemas" class="h-12 w-auto object-contain block" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
                     <div id="logo-text" class="text-2xl font-bold tracking-tight text-play-text-main" style="display: none;">
                         Play<span class="text-play-blue">San</span>
                     </div>
